@@ -1,0 +1,18 @@
+logging:
+  level:
+    org.springframework.web: DEBUG
+    ru.multicon: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:15434/analytics
+    username: analytics
+    password: analyticspassword
+
+server:
+  tomcat:
+    max-threads: 5
+  port: 8080
+
+
+

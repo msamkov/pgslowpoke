@@ -1,0 +1,20 @@
+logging:
+  path: logs
+  file: logs/pgslowpoke.log
+  level:
+    org.springframework.web: DEBUG
+    ru.multicon: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/pgslowpoke
+    username: pgslowpoke
+    password: password
+
+server:
+  tomcat:
+    max-threads: 5
+  port: 8080
+
+
+
