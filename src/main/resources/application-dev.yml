@@ -5,9 +5,13 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:15434/analytics
+    url: jdbc:postgresql://localhost:15432/analytics
     username: analytics
-    password: analyticspassword
+    password: passwordanalytics
+  liquibase:
+    change-log: classpath:/db/db.changelog-master.xml
+    enabled: true
+    contexts: prod, test
 
 server:
   tomcat:

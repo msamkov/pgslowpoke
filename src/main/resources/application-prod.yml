@@ -7,9 +7,13 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:postgresql://db:5432/pgslowpoke
-    username: pgslowpoke
-    password: password
+    url: jdbc:postgresql://db-analytics:5432/analytics
+    username: analytics
+    password: passwordanalytics
+  liquibase:
+    change-log: classpath:/db/db.changelog-master.xml
+    enabled: true
+    contexts: prod, test
 
 server:
   tomcat:
