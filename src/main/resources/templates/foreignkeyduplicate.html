@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Foreign Key Duplicate</title>
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th>Дочерняя таблица</th>
+        <th>Дочерняя столбец</th>
+        <th>Родительская таблица</th>
+        <th>Родительский столбец</th>
+        <th>Внешний ключ</th>
+    </tr>
+    </thead>
+    <tr th:each="key : ${foreignKeyDuplicate}">
+        <td th:text="${key.childTable}"></td>
+        <td th:text="${key.childColumn}"></td>
+        <td th:text="${key.parentTable}"></td>
+        <td th:text="${key.parentColumn}"></td>
+        <td th:text="${key.constraintName}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

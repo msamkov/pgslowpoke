@@ -12,3 +12,6 @@ docker-compose up -d
 
 http://localhost:8080/indexduplicate
 
+##  Поиск повторяющихся внешних ключей
+
+http://localhost:8080/foreignkeyduplicate

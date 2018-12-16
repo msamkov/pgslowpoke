@@ -9,10 +9,16 @@
     <changeSet id="0.1.0" author="msamkov" context="test">
         <sqlFile path="../v-1.0.0/sql/create_table_t_duplicate_index.sql" splitStatements="false" relativeToChangelogFile="true"/>
         <rollback>
-            <dropTable tableName="t_duplicate_index"/>
+            <dropTable tableName="s_test.t_duplicate_index"/>
         </rollback>
     </changeSet>
 
-
+    <changeSet id="0.2.0" author="msamkov" context="test">
+        <sqlFile path="../v-1.0.0/sql/create_table_t_foreign_key_duplicate.sql" splitStatements="false" relativeToChangelogFile="true"/>
+        <rollback>
+            <dropTable tableName="s_test.t_foreign_key_duplicate"/>
+            <dropTable tableName="s_test.t_user"/>
+        </rollback>
+    </changeSet>
 
 </databaseChangeLog>

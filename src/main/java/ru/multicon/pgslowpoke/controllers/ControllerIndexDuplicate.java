@@ -18,7 +18,7 @@ public class ControllerIndexDuplicate {
         this.serviceIndexDuplicate = serviceIndexDuplicate;
     }
 
-    @RequestMapping({"", "/", "/indexduplicate"})
+    @RequestMapping({"/indexduplicate"})
     public String getIndexPage(Model model) {
         log.debug("Getting Index Duplicate");
 
