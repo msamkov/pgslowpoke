@@ -32,6 +32,8 @@ dependencies {
 	runtimeOnly('org.postgresql:postgresql')
 	compileOnly('org.projectlombok:lombok')
 	compile('org.liquibase:liquibase-core')
+	compile group: 'org.webjars', name: 'bootstrap', version: '4.1.3'
+	compile group: 'org.webjars', name: 'webjars-locator', version: '0.34'
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 

@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Foreign Key Duplicate</title>
+
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 <body>
 
-<table>
-    <thead>
+<h2>Поиск повторяющихся внешних ключей</h2>
+<div class="table-responsive">
+<table class="table table-hover">
+    <thead class="thead-inverse">
     <tr>
         <th>Дочерняя таблица</th>
         <th>Дочерняя столбец</th>
@@ -24,6 +31,6 @@
         <td th:text="${key.constraintName}"></td>
     </tr>
 </table>
-
+</div>
 </body>
 </html>

@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Index Duplicate</title>
+
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 <body>
 
-<table>
-    <thead>
+<h2>Поиск повторяющихся индексов</h2>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-inverse">
     <tr>
         <th>Таблица</th>
         <th>Индекс</th>
@@ -21,6 +28,11 @@
         <td th:text="${index.sql}"></td>
     </tr>
 </table>
+</div>
+
+
+
+
 
 </body>
 </html>
