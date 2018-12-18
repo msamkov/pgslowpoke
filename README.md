@@ -8,6 +8,8 @@ docker-compose build
 docker-compose up -d
 ```
 
+## <a href="https://trello.com/b/f9A6f24T/pgslowpoke">Доска с задачами тут 👆</a>
+
 ##  Поиск повторяющихся индексов
 
 http://localhost:8080/indexduplicate
