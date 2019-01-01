@@ -11,25 +11,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <!-- Links -->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link navbar-brand" href="#">
-                <img src="images/logo.png" style="width:32px;">
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="foreignkeyduplicate">Поиск повторяющихся внешних ключей</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="indexduplicate">Поиск повторяющихся индексов</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pgsettings">Основные параметры</a>
-        </li>
-    </ul>
-</nav>
+<div th:replace="~{header}">Header</div>
 
 <h2>Поиск повторяющихся индексов</h2>
 <div class="table-responsive">
