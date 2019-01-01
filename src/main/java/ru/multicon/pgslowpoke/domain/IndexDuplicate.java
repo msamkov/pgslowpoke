@@ -6,8 +6,8 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class IndexDuplicate {
-    String table;
-    String index;
-    String sql;
-    boolean isPrimaryKey;
+    private String table;
+    private String index;
+    private String sql;
+    private boolean isPrimaryKey;
 }

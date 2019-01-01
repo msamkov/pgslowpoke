@@ -6,9 +6,9 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class ForeignKeyDuplicate {
-    String childTable;
-    String childColumn;
-    String parentTable;
-    String parentColumn;
-    String constraintName;
+    private String childTable;
+    private String childColumn;
+    private String parentTable;
+    private String parentColumn;
+    private String constraintName;
 }

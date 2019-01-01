@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Index Duplicate</title>
+    <title>Primary settings</title>
 
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -31,23 +31,30 @@
     </ul>
 </nav>
 
-<h2>Поиск повторяющихся индексов</h2>
+<h2> Основные параметры кластера</h2>
 <div class="table-responsive">
     <table class="table table-hover">
         <thead class="thead-inverse">
-    <tr>
-        <th>Таблица</th>
-        <th>Индекс</th>
-        <th>Описание</th>
-        <th>Первичный ключ</th>
-    </tr>
-    </thead>
-    <tr th:each="index : ${indexduplicate}">
-        <td th:text="${index.table}"></td>
-        <td th:text="${index.index}"></td>
-        <td th:text="${index.sql}"></td>
-    </tr>
-</table>
+        <tr>
+            <th>Наименование</th>
+            <th>Значение * ед.измерения</th>
+            <th>Значение</th>
+            <th>Ед.измерения</th>
+            <th>Минимум</th>
+            <th>Максимум</th>
+            <th>Описание</th>
+        </tr>
+        </thead>
+        <tr th:each="settings : ${primarySettings}">
+            <td th:text="${settings.name}"></td>
+            <td th:text="${settings.value}"></td>
+            <td th:text="${settings.setting}"></td>
+            <td th:text="${settings.unit}"></td>
+            <td th:text="${settings.min}"></td>
+            <td th:text="${settings.max}"></td>
+            <td th:text="${settings.description}"></td>
+        </tr>
+    </table>
 </div>
 
 
