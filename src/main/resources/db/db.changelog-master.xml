@@ -10,6 +10,7 @@
     </preConditions>
 
     <include file="v-1.0.0/cumulative.xml" relativeToChangelogFile="true"/>
+    <include file="v-2.0.0/cumulative.xml" relativeToChangelogFile="true"/>
 
 
 </databaseChangeLog>

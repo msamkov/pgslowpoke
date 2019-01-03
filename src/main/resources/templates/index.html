@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <div th:replace="~{header}">Header</div>
+    <div class="px-3">
+        <p>Инструмент для поиска в схеме БД слабых мест.
+            Неиспользуемые индексы.
+            Поиск повторяющихся индексов.
+            Поиск повторяющихся внешних ключей.
+        </p>
+    </div>
+
+</body>
+</html>

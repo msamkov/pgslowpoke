@@ -21,4 +21,8 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="1.0.0" author="msamkov" context="test">
+        <tagDatabase tag="1.0.0"/>
+    </changeSet>
+
 </databaseChangeLog>

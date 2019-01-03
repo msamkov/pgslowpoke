@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class ServicePgSettingsHint {
+public class PgSettingsHintService {
     private final List<PgSettingsHint> pgSettingsHints =
             Arrays.asList(
                     new PgSettingsHint()
