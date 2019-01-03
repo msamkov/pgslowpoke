@@ -20,7 +20,7 @@ public class PgSettingsController {
     }
 
     @RequestMapping({"/pgsettings"})
-    public String getIndexPage(Model model) {
+    public String findAll(Model model) {
         log.debug("Getting PgSettings");
 
         model.addAttribute("primarySettings", pgSettingsService.findPrimarySettings());

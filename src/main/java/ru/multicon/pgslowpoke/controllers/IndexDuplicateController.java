@@ -20,7 +20,7 @@ public class IndexDuplicateController {
     }
 
     @RequestMapping({"/indexduplicate"})
-    public String getIndexPage(Model model) {
+    public String findAll(Model model) {
         log.debug("Getting Index Duplicate");
 
         model.addAttribute("indexduplicate", indexDuplicateService.findAll());

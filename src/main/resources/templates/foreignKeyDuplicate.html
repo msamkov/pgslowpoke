@@ -12,11 +12,11 @@
 <body>
 
 <div th:replace="~{header}">Header</div>
-
+<div class="px-3">
 <h2>Поиск повторяющихся внешних ключей</h2>
 <div class="table-responsive">
-<table class="table table-hover">
-    <thead class="thead-inverse">
+<table class="table table-hover table-bordered">
+    <thead class="thead-inverse thead-dark">
     <tr>
         <th>Дочерняя таблица</th>
         <th>Дочерняя столбец</th>
@@ -33,6 +33,7 @@
         <td th:text="${key.constraintName}"></td>
     </tr>
 </table>
+</div>
 </div>
 </body>
 </html>

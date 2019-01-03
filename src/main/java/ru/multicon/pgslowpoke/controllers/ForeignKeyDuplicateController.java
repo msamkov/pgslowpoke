@@ -20,7 +20,7 @@ public class ForeignKeyDuplicateController {
     }
 
     @RequestMapping({"/foreignkeyduplicate"})
-    public String getIndexPage(Model model) {
+    public String findAll(Model model) {
         log.debug("Getting Foreign key duplicate");
 
         model.addAttribute("foreignKeyDuplicate", foreignKeyDuplicateService.findAll());

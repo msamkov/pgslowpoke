@@ -12,6 +12,7 @@
 <body>
 <div th:replace="~{header}">Header</div>
 <div class="px-3">
+    <h2>Неиспользуемые индексы</h2>
     <p>Условие поиска:</p>
     <ol>
         <li>Более 100 полных проходов по таблице</li>
@@ -20,7 +21,25 @@
         <li>Исключаем из выборки первичные ключи</li>
         <li>Индекс не UNIQUE</li>
     </ol>
-</div>
 
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead class="thead-inverse thead-dark">
+        <tr>
+            <th>Схема</th>
+            <th>Таблица</th>
+            <th>Индекс</th>
+            <th>Размер</th>
+        </tr>
+        </thead>
+        <tr th:each="index : ${indexUnused}">
+            <td th:text="${index.schema}"></td>
+            <td th:text="${index.table}"></td>
+            <td th:text="${index.index}"></td>
+            <td th:text="${index.size}"></td>
+        </tr>
+    </table>
+</div>
+</div>
 </body>
 </html>
