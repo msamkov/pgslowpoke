@@ -5,25 +5,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.multicon.pgslowpoke.services.ServicePgSettings;
+import ru.multicon.pgslowpoke.services.PgSettingsService;
 
 
 @Slf4j
 @Controller
-public class ControllerPgSettings {
-    private final ServicePgSettings servicePgSettings;
+public class PgSettingsController {
+
+    private final PgSettingsService pgSettingsService;
 
     @Autowired
-    public ControllerPgSettings(ServicePgSettings servicePgSettings) {
-        this.servicePgSettings = servicePgSettings;
+    public PgSettingsController(PgSettingsService pgSettingsService) {
+        this.pgSettingsService = pgSettingsService;
     }
 
     @RequestMapping({"/pgsettings"})
     public String getIndexPage(Model model) {
         log.debug("Getting PgSettings");
 
-        model.addAttribute("primarySettings", servicePgSettings.findPrimarySettings());
+        model.addAttribute("primarySettings", pgSettingsService.findPrimarySettings());
 
-        return "pgsettings";
+        return "pgSettings";
     }
 }

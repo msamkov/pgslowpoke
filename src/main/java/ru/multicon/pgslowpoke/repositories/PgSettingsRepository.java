@@ -6,7 +6,7 @@ import ru.multicon.pgslowpoke.domain.PgSettings;
 import java.util.List;
 
 @Mapper
-public interface RepositoryPgSettings {
+public interface PgSettingsRepository {
 
     @Select("SELECT name, \n" +
             "       current_setting(name) as value, \n" +

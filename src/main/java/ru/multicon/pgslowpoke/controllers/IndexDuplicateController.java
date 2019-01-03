@@ -6,24 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.multicon.pgslowpoke.services.ServiceIndexDuplicate;
+import ru.multicon.pgslowpoke.services.IndexDuplicateService;
 
 @Slf4j
 @Controller
-public class ControllerIndexDuplicate {
-    private final ServiceIndexDuplicate serviceIndexDuplicate;
+public class IndexDuplicateController {
+
+    private final IndexDuplicateService indexDuplicateService;
 
     @Autowired
-    public ControllerIndexDuplicate(ServiceIndexDuplicate serviceIndexDuplicate) {
-        this.serviceIndexDuplicate = serviceIndexDuplicate;
+    public IndexDuplicateController(IndexDuplicateService indexDuplicateService) {
+        this.indexDuplicateService = indexDuplicateService;
     }
 
     @RequestMapping({"/indexduplicate"})
     public String getIndexPage(Model model) {
         log.debug("Getting Index Duplicate");
 
-        model.addAttribute("indexduplicate", serviceIndexDuplicate.findAll());
+        model.addAttribute("indexduplicate", indexDuplicateService.findAll());
 
-        return "indexduplicate";
+        return "indexDuplicate";
     }
 }

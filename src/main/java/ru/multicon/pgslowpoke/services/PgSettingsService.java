@@ -4,30 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.multicon.pgslowpoke.domain.PgSettings;
 import ru.multicon.pgslowpoke.domain.PgSettingsHint;
-import ru.multicon.pgslowpoke.repositories.RepositoryPgSettings;
+import ru.multicon.pgslowpoke.repositories.PgSettingsRepository;
 import java.util.List;
 
 @Service
-public class ServicePgSettings {
+public class PgSettingsService {
 
-    private final ServicePgSettingsHint servicePgSettingsHint;
+    private final PgSettingsHintService servicePgSettingsHint;
 
-    private final RepositoryPgSettings repositoryPgSettings;
+    private final PgSettingsRepository pgSettingsRepository;
 
     @Autowired
-    public ServicePgSettings(RepositoryPgSettings repositoryPgSettings,
-                             ServicePgSettingsHint servicePgSettingsHint) {
-        this.repositoryPgSettings = repositoryPgSettings;
+    public PgSettingsService(PgSettingsRepository pgSettingsRepository,
+                             PgSettingsHintService servicePgSettingsHint) {
+        this.pgSettingsRepository = pgSettingsRepository;
         this.servicePgSettingsHint = servicePgSettingsHint;
     }
 
     public List<PgSettings> findAll() {
-        return joinDescription(repositoryPgSettings.findAll(),
+        return joinDescription(pgSettingsRepository.findAll(),
                 servicePgSettingsHint.findAll());
     }
 
     public List<PgSettings> findPrimarySettings() {
-        return joinDescription(repositoryPgSettings.findPrimarySettings(),
+        return joinDescription(pgSettingsRepository.findPrimarySettings(),
                 servicePgSettingsHint.findAll());
     }
 

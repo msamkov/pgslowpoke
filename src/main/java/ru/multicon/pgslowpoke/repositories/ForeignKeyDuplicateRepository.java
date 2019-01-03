@@ -8,7 +8,7 @@ import ru.multicon.pgslowpoke.domain.ForeignKeyDuplicate;
 import java.util.List;
 
 @Mapper
-public interface RepositoryForeignKeyDuplicate {
+public interface ForeignKeyDuplicateRepository {
 
     @Select("WITH duplicate_foreign_key_group AS\n" +
             "    (\n" +
