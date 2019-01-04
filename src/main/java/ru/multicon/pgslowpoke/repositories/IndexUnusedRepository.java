@@ -33,7 +33,7 @@ public interface IndexUnusedRepository {
             "      SELECT schemaname, relname \n" +
             "      FROM  pg_stat_user_tables\n" +
             "      WHERE seq_scan > 100  -- более 100 полных проходов по таблице\n" +
-            "      AND n_tup_ins > 1   -- таблица не пуста\n" +
+            "      AND ( n_tup_ins + n_live_tup ) > 1   -- таблица не пуста\n" +
             "    )\n" +
             "    SELECT i.schemaname AS schema,\n" +
             "           i.relname AS table,\n" +
