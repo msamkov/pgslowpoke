@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PgStatUserTables</title>
+
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div th:replace="~{header}">Header</div>
+<div class="px-3">
+    <h4>Статистика просмотров</h4>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="thead-inverse thead-dark">
+            <tr>
+                <th>Схема</th>
+                <th>Таблица</th>
+                <th>Последовательный просмотр</th>
+                <th>Кол-во записей(Последовательный просмотр)</th>
+                <th>Просмотр по индексу</th>
+                <th>Кол-во записей(Просмотр по индексу)</th>
+                <th>Количество вставленных строк</th>
+                <th>Количество изменённых строк</th>
+                <th>Количество удалённых строк</th>
+            </tr>
+            </thead>
+            <tr th:each="stat : ${pgStatUserTables}">
+                <td th:text="${stat.schema}"></td>
+                <td th:text="${stat.table}"></td>
+                <td th:text="${stat.seqScan}"></td>
+                <td th:text="${stat.seqTupRead}"></td>
+                <td th:text="${stat.indexScan}"></td>
+                <td th:text="${stat.indexTupFetch}"></td>
+                <td th:text="${stat.insert}"></td>
+                <td th:text="${stat.update}"></td>
+                <td th:text="${stat.delete}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
