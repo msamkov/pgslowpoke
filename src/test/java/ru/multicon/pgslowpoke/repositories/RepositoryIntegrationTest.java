@@ -35,6 +35,9 @@ public class RepositoryIntegrationTest {
     private static IndexUnusedRepository indexUnusedRepository;
     private static PgSettingsRepository pgSettingsRepository;
     private static PgStatUserTablesRepository pgStatUserTablesRepository;
+    private static DbSizeRepository dbSizeRepository;
+    private static TableSizeRepository tableSizeRepository;
+    private static IndexSizeRepository indexSizeRepository;
 
     @ClassRule
     public static PostgreSQLContainer postgres = new PostgreSQLContainer();
@@ -57,6 +60,9 @@ public class RepositoryIntegrationTest {
         configuration.addMapper(IndexUnusedRepository.class);
         configuration.addMapper(PgSettingsRepository.class);
         configuration.addMapper(PgStatUserTablesRepository.class);
+        configuration.addMapper(DbSizeRepository.class);
+        configuration.addMapper(TableSizeRepository.class);
+        configuration.addMapper(IndexSizeRepository.class);
 
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
         SqlSession session = sqlSessionFactory.openSession();
@@ -65,6 +71,9 @@ public class RepositoryIntegrationTest {
         indexUnusedRepository = session.getMapper(IndexUnusedRepository.class);
         pgSettingsRepository = session.getMapper(PgSettingsRepository.class);
         pgStatUserTablesRepository = session.getMapper(PgStatUserTablesRepository.class);
+        dbSizeRepository = session.getMapper(DbSizeRepository.class);
+        tableSizeRepository = session.getMapper(TableSizeRepository.class);
+        indexSizeRepository = session.getMapper(IndexSizeRepository.class);
     }
 
     private static HikariDataSource getDataSource() {
@@ -151,13 +160,66 @@ public class RepositoryIntegrationTest {
     }
 
     @Test
-    public void pgStatUserTablesFindAll() {
+    public void pgStatUserTablesRepositoryFindAll() {
         //подготавливаем
         int expected = 6;
 
         //выполняем
         List<PgStatUserTables> pgStatUserTables = pgStatUserTablesRepository.findAll();
         int actual = pgStatUserTables.size();
+
+        //сравниваем
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void dbSizeRepositoryfindByName() {
+        //подготавливаем
+        String dbName = "postgres";
+        String expected = dbName;
+
+        //выполняем
+        DbSize dbSize = dbSizeRepository.findByName(dbName);
+        String actual = dbSize.getName();
+
+        //сравниваем
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void dbSizeRepositoryCurrent() {
+        //подготавливаем
+        String expected = "test";
+
+        //выполняем
+        DbSize dbSize = dbSizeRepository.current();
+        String actual = dbSize.getName();
+
+        //сравниваем
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void tableSizeRepositoryFindByDbName() {
+        //подготавливаем
+        int expected = 6;
+
+        //выполняем
+        List<TableSize> tableSizes = tableSizeRepository.findAll();
+        int actual = tableSizes.size();
+
+        //сравниваем
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void IndexSizeRepositoryFindAll() {
+        //подготавливаем
+        int expected = 10;
+
+        //выполняем
+        List<IndexSize> indexSizes = indexSizeRepository.findAll();
+        int actual = indexSizes.size();
 
         //сравниваем
         Assert.assertEquals(expected, actual);
