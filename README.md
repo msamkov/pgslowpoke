@@ -30,7 +30,7 @@ http://localhost:8080/indexunused
 ### Статистика просмотров только пользовательских таблиц
 http://localhost:8080/pgstatusertables
 
-### Размера БД, таблиц и индексов
+### Размер БД, таблиц и индексов
 http://localhost:8080/dbsize
 
 ## Contributing
