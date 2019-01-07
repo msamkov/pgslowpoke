@@ -23,6 +23,5 @@ public interface IndexSizeRepository {
                      @Result(property = "index", column = "index"),
                      @Result(property = "size", column = "size")
             })
-
     List<IndexSize> findAll();
 }

@@ -187,6 +187,19 @@ public class RepositoryIntegrationTest {
     }
 
     @Test
+    public void dbSizeRepositoryCurrent() {
+        //подготавливаем
+        String expected = "test";
+
+        //выполняем
+        DbSize dbSize = dbSizeRepository.current();
+        String actual = dbSize.getName();
+
+        //сравниваем
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
     public void tableSizeRepositoryFindByDbName() {
         //подготавливаем
         int expected = 6;

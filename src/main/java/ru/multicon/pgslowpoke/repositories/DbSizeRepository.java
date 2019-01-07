@@ -1,9 +1,6 @@
 package ru.multicon.pgslowpoke.repositories;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import ru.multicon.pgslowpoke.domain.DbSize;
 
 @Mapper
@@ -16,5 +13,10 @@ public interface DbSizeRepository {
                      @Result(property = "size", column = "size")
             })
     DbSize findByName(String name);
+
+    @Select("SELECT current_database() AS name,\n" +
+            "pg_size_pretty( pg_database_size(current_database())) AS size;")
+    @ResultMap("DbSizeResult")
+    DbSize current();
 
 }
