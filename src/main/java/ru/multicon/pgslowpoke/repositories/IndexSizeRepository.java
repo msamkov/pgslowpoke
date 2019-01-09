@@ -17,7 +17,7 @@ public interface IndexSizeRepository {
             "       pg_size_pretty(pg_relation_size(format('%I.%I', schemaname, indexname))) AS size\n" +
             "FROM pg_indexes\n" +
             "WHERE schemaname NOT IN ('pg_catalog','information_schema');\n")
-    @Results(id = "TableSizeResult",
+    @Results(id = "IndexSizeResult",
             value = {@Result(property = "schema", column = "schema"),
                      @Result(property = "table", column = "table"),
                      @Result(property = "index", column = "index"),
