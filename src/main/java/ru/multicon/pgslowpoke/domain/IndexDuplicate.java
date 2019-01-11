@@ -10,5 +10,5 @@ public class IndexDuplicate {
     private String table;
     private String index;
     private String sql;
-    private boolean isPrimaryKey;
+    private boolean primaryKey;
 }

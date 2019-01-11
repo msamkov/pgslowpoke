@@ -38,7 +38,7 @@ public interface IndexDuplicateRepository {
                      @Result(property = "table", column = "table"),
                      @Result(property = "index", column = "index"),
                      @Result(property = "sql", column = "sql"),
-                     @Result(property = "isPrimaryKey", column = "is_primary_key")
+                     @Result(property = "primaryKey", column = "is_primary_key")
             })
     List<IndexDuplicate> findAll();
 }
