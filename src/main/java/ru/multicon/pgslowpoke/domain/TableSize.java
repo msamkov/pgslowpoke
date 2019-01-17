@@ -1,12 +1,14 @@
 package ru.multicon.pgslowpoke.domain;
 
-import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
-@Data
-@Accessors(chain = true)
+@Getter
+@Builder
+@AllArgsConstructor
 public class TableSize {
-    String schema;
-    String table;
-    String size;
+    private String schema;
+    private String table;
+    private String size;
 }

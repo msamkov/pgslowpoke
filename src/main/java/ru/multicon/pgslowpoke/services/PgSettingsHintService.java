@@ -9,16 +9,18 @@ import java.util.List;
 public class PgSettingsHintService {
     private final List<PgSettingsHint> pgSettingsHints =
             Arrays.asList(
-                    new PgSettingsHint()
-                        .setName("max_connections")
-                        .setDescription("Максимальное число одновременных подключений к серверу БД"),
-                    new PgSettingsHint()
-                        .setName("shared_buffers")
-                        .setDescription("Объём совместно используемой памяти, выделяемой PostgreSQL" +
+                    PgSettingsHint.builder()
+                        .name("max_connections")
+                        .description("Максимальное число одновременных подключений к серверу БД")
+                        .build(),
+                    PgSettingsHint.builder()
+                        .name("shared_buffers")
+                        .description("Объём совместно используемой памяти, выделяемой PostgreSQL" +
                                 " для кэширования данных, определяется числом страниц (shared_buffers)" +
                                 " по 8 килобайт каждая. Следует учитывать, что операционная система " +
                                 "сама кеширует данные, поэтому нет необходимости отводить под кэш" +
                                 " всю оперативную память")
+                        .build()
             );
 
     public List<PgSettingsHint> findAll() {

@@ -21,16 +21,18 @@ public class IndexUnusedServiceTest {
                 new IndexUnusedService(indexUnusedRepository);
 
         List<IndexUnused> indexUnuseds = Arrays.asList(
-                new IndexUnused()
-                        .setSchema("s_test")
-                        .setTable("t_user")
-                        .setIndex("t_user_name_idx")
-                        .setSize("8192 bytes"),
-                new IndexUnused()
-                        .setSchema("s_test")
-                        .setTable("t_index_unused")
-                        .setIndex("t_index_unused_name_idx")
-                        .setSize("3008 kB")
+                IndexUnused.builder()
+                        .schema("s_test")
+                        .table("t_user")
+                        .index("t_user_name_idx")
+                        .size("8192 bytes")
+                        .build(),
+                IndexUnused.builder()
+                        .schema("s_test")
+                        .table("t_index_unused")
+                        .index("t_index_unused_name_idx")
+                        .size("3008 kB")
+                        .build()
         );
 
         when(indexUnusedRepository.findAll()).thenReturn(indexUnuseds);

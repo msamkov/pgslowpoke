@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.multicon.pgslowpoke.domain.PgSettings;
 import ru.multicon.pgslowpoke.domain.PgSettingsHint;
 import ru.multicon.pgslowpoke.repositories.PgSettingsRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,8 +33,9 @@ public class PgSettingsService {
                 servicePgSettingsHint.findAll());
     }
 
-    private List<PgSettings> joinDescription(List<PgSettings> pgSettings,
-                                             List<PgSettingsHint> pgSettingsHints) {
+    private List<PgSettings> joinDescription(final List<PgSettings> pgSettings,
+                                             final List<PgSettingsHint> pgSettingsHints) {
+        List<PgSettings> result = new ArrayList();
         for(PgSettings setting: pgSettings) {
             PgSettingsHint desc = pgSettingsHints
                     .stream()
@@ -41,9 +44,22 @@ public class PgSettingsService {
                     .orElse(null);
 
             if(desc != null) {
-                setting.setDescription(desc.getDescription());
+                PgSettings pgSettingsDesc = PgSettings.builder()
+                        .name(setting.getName())
+                        .value(setting.getValue())
+                        .setting(setting.getSetting())
+                        .min(setting.getMin())
+                        .max(setting.getMax())
+                        .unit(setting.getUnit())
+                        .description(desc.getDescription())
+                        .build();
+                result.add(pgSettingsDesc);
+            }else {
+                result.add(setting);
             }
+
+
         }
-        return pgSettings;
+        return result;
     }
 }

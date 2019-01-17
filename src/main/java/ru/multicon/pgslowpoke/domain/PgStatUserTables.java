@@ -1,18 +1,20 @@
 package ru.multicon.pgslowpoke.domain;
 
-import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
-@Data
-@Accessors(chain = true)
+@Getter
+@Builder
+@AllArgsConstructor
 public class PgStatUserTables {
     private String schema;  // Схема
     private String table;   // Таблица
-    private long seqScan;     // Последовательный просмотр
-    private long seqTupRead;  // Кол-во записей(Последовательный просмотр)
-    private long indexScan;     // Просмотр по индексу
-    private long indexTupFetch; // Кол-во записей(Просмотр по индексу)
-    private long insert; // Количество вставленных строк
-    private long update; // Количество изменённых строк (включая изменения по схеме HOT)
-    private long delete; // Количество удалённых строк
+    private Long seqScan;     // Последовательный просмотр
+    private Long seqTupRead;  // Кол-во записей(Последовательный просмотр)
+    private Long indexScan;     // Просмотр по индексу
+    private Long indexTupFetch; // Кол-во записей(Просмотр по индексу)
+    private Long insert; // Количество вставленных строк
+    private Long update; // Количество изменённых строк (включая изменения по схеме HOT)
+    private Long delete; // Количество удалённых строк
 }

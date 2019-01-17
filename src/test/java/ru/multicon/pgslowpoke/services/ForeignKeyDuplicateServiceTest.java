@@ -20,18 +20,20 @@ public class ForeignKeyDuplicateServiceTest {
                 new ForeignKeyDuplicateService(foreignKeyDuplicateRepository);
 
         List<ForeignKeyDuplicate> foreignKeyDuplicates = Arrays.asList(
-                new ForeignKeyDuplicate()
-                        .setChildTable("t_foreign_key_duplicate")
-                        .setChildColumn("user_id")
-                        .setParentTable("t_user")
-                        .setParentColumn("id")
-                        .setConstraintName("t_foreign_key_duplicate_t_user_fkey"),
-                new ForeignKeyDuplicate()
-                        .setChildTable("t_foreign_key_duplicate")
-                        .setChildColumn("user_id")
-                        .setParentTable("t_user")
-                        .setParentColumn("id")
-                        .setConstraintName("t_foreign_key_duplicate_t_user_fkey2")
+                ForeignKeyDuplicate.builder()
+                        .childTable("t_foreign_key_duplicate")
+                        .childColumn("user_id")
+                        .parentTable("t_user")
+                        .parentColumn("id")
+                        .constraintName("t_foreign_key_duplicate_t_user_fkey")
+                        .build(),
+                ForeignKeyDuplicate.builder()
+                        .childTable("t_foreign_key_duplicate")
+                        .childColumn("user_id")
+                        .parentTable("t_user")
+                        .parentColumn("id")
+                        .constraintName("t_foreign_key_duplicate_t_user_fkey2")
+                        .build()
         );
 
         when(foreignKeyDuplicateRepository.findAll()).thenReturn(foreignKeyDuplicates);

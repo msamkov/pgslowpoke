@@ -5,7 +5,7 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:15432/analytics
+    url: jdbc:postgresql://localhost:35432/analytics
     username: analytics
     password: passwordanalytics
   liquibase:
@@ -16,7 +16,7 @@ spring:
 server:
   tomcat:
     max-threads: 5
-  port: 8080
+  port: 8081
 
 
 

@@ -6,7 +6,7 @@ services:
     - POSTGRES_USER=analytics
     - POSTGRES_PASSWORD=passwordanalytics
     ports:
-    - 15432:5432
+    - 35432:5432
     expose:
     - 5432
     volumes:
@@ -22,8 +22,8 @@ services:
       dockerfile: Dockerfile
     image: multicon/pgslowpoke
     ports:
-    - 8080:8080
-    - 5005:5005
+    - 8081:8080
+    - 5006:5005
     expose:
     - 8080
     - 5005
