@@ -1,10 +1,12 @@
 package ru.multicon.pgslowpoke.domain;
 
-import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
-@Data
-@Accessors(chain = true)
+@Getter
+@Builder
+@AllArgsConstructor
 public class PgSettings {
     private String name;
     private String value; // текущее значение. Расчитывается как setting * unit
@@ -13,4 +15,13 @@ public class PgSettings {
     private String max;
     private String unit;
     private String description;
+
+    public PgSettings(String name, String value, String setting, String min, String max, String unit) {
+        this.name = name;
+        this.value = value;
+        this.setting = setting;
+        this.min = min;
+        this.max = max;
+        this.unit = unit;
+    }
 }

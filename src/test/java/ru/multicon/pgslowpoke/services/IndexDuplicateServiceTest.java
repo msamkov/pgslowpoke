@@ -22,18 +22,20 @@ public class IndexDuplicateServiceTest {
                 new IndexDuplicateService(indexDuplicateRepository);
 
         List<IndexDuplicate> indexDuplicates = Arrays.asList(
-                new IndexDuplicate()
-                        .setSchema("s_test")
-                        .setTable("t_duplicate_index")
-                        .setIndex("t_duplicate_index_name_idx")
-                        .setSql("CREATE INDEX t_duplicate_index_name_idx ON s_test.t_duplicate_index USING btree (name)")
-                        .setPrimaryKey(true),
-                new IndexDuplicate()
-                        .setSchema("s_test")
-                        .setTable("t_duplicate_index")
-                        .setIndex("t_duplicate_index_name2_idx")
-                        .setSql("CREATE INDEX t_duplicate_index_name2_idx ON s_test.t_duplicate_index USING btree (name)")
-                        .setPrimaryKey(false)
+                IndexDuplicate.builder()
+                        .schema("s_test")
+                        .table("t_duplicate_index")
+                        .index("t_duplicate_index_name_idx")
+                        .sql("CREATE INDEX t_duplicate_index_name_idx ON s_test.t_duplicate_index USING btree (name)")
+                        .primaryKey(true)
+                        .build(),
+                IndexDuplicate.builder()
+                        .schema("s_test")
+                        .table("t_duplicate_index")
+                        .index("t_duplicate_index_name2_idx")
+                        .sql("CREATE INDEX t_duplicate_index_name2_idx ON s_test.t_duplicate_index USING btree (name)")
+                        .primaryKey(false)
+                        .build()
         );
 
         when(indexDuplicateRepository.findAll()).thenReturn(indexDuplicates);

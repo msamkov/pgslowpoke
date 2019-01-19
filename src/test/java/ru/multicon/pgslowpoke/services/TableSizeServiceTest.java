@@ -22,14 +22,16 @@ public class TableSizeServiceTest {
                 new TableSizeService(tableSizeRepository);
 
         List<TableSize> tableSizes = Arrays.asList(
-                new TableSize()
-                        .setSchema("s_test")
-                        .setTable("t_user")
-                        .setSize("8192 bytes"),
-                new TableSize()
-                        .setSchema("s_test")
-                        .setTable("t_index_unused")
-                        .setSize("3008 kB")
+                TableSize.builder()
+                        .schema("s_test")
+                        .table("t_user")
+                        .size("8192 bytes")
+                        .build(),
+                TableSize.builder()
+                        .schema("s_test")
+                        .table("t_index_unused")
+                        .size("3008 kB")
+                        .build()
         );
 
         when(tableSizeRepository.findAll()).thenReturn(tableSizes);

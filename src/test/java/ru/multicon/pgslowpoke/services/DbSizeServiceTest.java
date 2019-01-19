@@ -16,9 +16,10 @@ public class DbSizeServiceTest {
         DbSizeRepository dbSizeRepository = mock(DbSizeRepository.class);
         DbSizeService dbSizeService = new DbSizeService(dbSizeRepository);
         String dbName = "test";
-        DbSize dbSize = new DbSize()
-                .setName(dbName)
-                .setSize("20 mb");
+        DbSize dbSize = DbSize.builder()
+                .name(dbName)
+                .size("20 mb")
+                .build();
         when(dbSizeRepository.findByName(dbName)).thenReturn(dbSize);
         DbSize expected = dbSize;
 
@@ -35,9 +36,10 @@ public class DbSizeServiceTest {
         DbSizeRepository dbSizeRepository = mock(DbSizeRepository.class);
         DbSizeService dbSizeService = new DbSizeService(dbSizeRepository);
         String dbName = "test";
-        DbSize dbSize = new DbSize()
-                .setName(dbName)
-                .setSize("20 mb");
+        DbSize dbSize = DbSize.builder()
+                .name(dbName)
+                .size("20 mb")
+                .build();
         when(dbSizeRepository.current()).thenReturn(dbSize);
         DbSize expected = dbSize;
 

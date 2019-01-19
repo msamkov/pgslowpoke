@@ -21,16 +21,18 @@ public class IndexSizeServiceTest {
                 new IndexSizeService(indexSizeRepository);
 
         List<IndexSize> indexSizes = Arrays.asList(
-                new IndexSize()
-                        .setSchema("s_test")
-                        .setTable("t_user")
-                        .setIndex("t_user_pkey")
-                        .setSize("8192 bytes"),
-                new IndexSize()
-                        .setSchema("s_test")
-                        .setTable("t_index_unused")
-                        .setIndex("t_index_unused_name_idx")
-                        .setSize("3008 kB")
+                IndexSize.builder()
+                        .schema("s_test")
+                        .table("t_user")
+                        .index("t_user_pkey")
+                        .size("8192 bytes")
+                        .build(),
+                IndexSize.builder()
+                        .schema("s_test")
+                        .table("t_index_unused")
+                        .index("t_index_unused_name_idx")
+                        .size("3008 kB")
+                        .build()
                 );
 
         when(indexSizeRepository.findAll()).thenReturn(indexSizes);
