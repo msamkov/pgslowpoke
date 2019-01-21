@@ -10,5 +10,5 @@ import lombok.Getter;
 public class TableSize {
     private String schema;
     private String table;
-    private String size;
+    private long size;
 }

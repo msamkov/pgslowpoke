@@ -25,12 +25,12 @@ public class TableSizeServiceTest {
                 TableSize.builder()
                         .schema("s_test")
                         .table("t_user")
-                        .size("8192 bytes")
+                        .size(8192)
                         .build(),
                 TableSize.builder()
                         .schema("s_test")
                         .table("t_index_unused")
-                        .size("3008 kB")
+                        .size(3008)
                         .build()
         );
 

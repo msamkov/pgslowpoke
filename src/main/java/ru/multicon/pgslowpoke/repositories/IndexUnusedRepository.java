@@ -38,7 +38,7 @@ public interface IndexUnusedRepository {
             "    SELECT i.schemaname AS schema,\n" +
             "           i.relname AS table,\n" +
             "           i.indexrelname AS index,\n" +
-            "           pg_size_pretty(pg_relation_size(i.indexrelid::regclass)) AS size \n" +
+            "           pg_relation_size(i.indexrelid::regclass) AS size \n" +
             "    FROM pg_stat_user_indexes AS i\n" +
             "    JOIN pg_index AS ind\n" +
             "      ON i.indexrelid = ind.indexrelid\n" +

@@ -13,7 +13,7 @@ public interface TableSizeRepository {
 
     @Select("SELECT schemaname AS schema, \n" +
             "       tablename AS table, \n" +
-            "       pg_size_pretty(pg_table_size(format('%s.%s', schemaname, tablename))) AS size \n" +
+            "       pg_table_size(format('%s.%s', schemaname, tablename)) AS size \n" +
             "FROM pg_tables \n" +
             "WHERE schemaname NOT IN ('pg_catalog','information_schema');")
     @Results(id = "TableSizeResult",

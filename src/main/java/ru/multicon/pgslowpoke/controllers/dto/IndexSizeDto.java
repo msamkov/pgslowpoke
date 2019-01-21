@@ -1,4 +1,4 @@
-package ru.multicon.pgslowpoke.domain;
+package ru.multicon.pgslowpoke.controllers.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,9 +7,9 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class IndexSize {
+public class IndexSizeDto {
     private String schema;
     private String table;
     private String index;
-    private long size;
+    private String size;
 }

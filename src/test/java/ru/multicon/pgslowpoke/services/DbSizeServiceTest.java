@@ -18,7 +18,7 @@ public class DbSizeServiceTest {
         String dbName = "test";
         DbSize dbSize = DbSize.builder()
                 .name(dbName)
-                .size("20 mb")
+                .size(10001)
                 .build();
         when(dbSizeRepository.findByName(dbName)).thenReturn(dbSize);
         DbSize expected = dbSize;
@@ -38,7 +38,7 @@ public class DbSizeServiceTest {
         String dbName = "test";
         DbSize dbSize = DbSize.builder()
                 .name(dbName)
-                .size("20 mb")
+                .size(1001)
                 .build();
         when(dbSizeRepository.current()).thenReturn(dbSize);
         DbSize expected = dbSize;

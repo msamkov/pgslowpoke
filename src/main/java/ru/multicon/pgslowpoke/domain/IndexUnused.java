@@ -11,6 +11,6 @@ public class IndexUnused {
     private String schema;
     private String table;
     private String index;
-    private String size;
+    private long size;
 
 }

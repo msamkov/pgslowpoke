@@ -1,4 +1,4 @@
-package ru.multicon.pgslowpoke.domain;
+package ru.multicon.pgslowpoke.controllers.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class DbSize {
+public class DbSizeDto {
     private String name;
-    private long size;
+    private String size;
 }
