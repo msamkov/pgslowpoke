@@ -6,8 +6,8 @@ import ru.multicon.pgslowpoke.domain.PgSettings;
 import ru.multicon.pgslowpoke.domain.PgSettingsHint;
 import ru.multicon.pgslowpoke.repositories.PgSettingsRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PgSettingsService {
@@ -17,49 +17,38 @@ public class PgSettingsService {
     private final PgSettingsRepository pgSettingsRepository;
 
     @Autowired
-    public PgSettingsService(PgSettingsRepository pgSettingsRepository,
-                             PgSettingsHintService servicePgSettingsHint) {
+    public PgSettingsService(final PgSettingsRepository pgSettingsRepository,
+                             final PgSettingsHintService servicePgSettingsHint) {
         this.pgSettingsRepository = pgSettingsRepository;
         this.servicePgSettingsHint = servicePgSettingsHint;
     }
 
     public List<PgSettings> findAll() {
-        return joinDescription(pgSettingsRepository.findAll(),
-                servicePgSettingsHint.findAll());
+        return joinDescription(
+            pgSettingsRepository.findAll(),
+            servicePgSettingsHint.findAll()
+        );
     }
 
     public List<PgSettings> findPrimarySettings() {
-        return joinDescription(pgSettingsRepository.findPrimarySettings(),
-                servicePgSettingsHint.findAll());
+        return joinDescription(
+            pgSettingsRepository.findPrimarySettings(),
+            servicePgSettingsHint.findAll()
+        );
     }
 
     private List<PgSettings> joinDescription(final List<PgSettings> pgSettings,
                                              final List<PgSettingsHint> pgSettingsHints) {
-        List<PgSettings> result = new ArrayList();
-        for(PgSettings setting: pgSettings) {
-            PgSettingsHint desc = pgSettingsHints
-                    .stream()
-                    .filter(s -> s.getName().equals(setting.getName()))
-                    .findFirst()
-                    .orElse(null);
+        return pgSettings.stream()
+            .map(stn -> stn.withDescription(findDescription(stn.getName(), pgSettingsHints)))
+            .collect(Collectors.toList());
+    }
 
-            if(desc != null) {
-                PgSettings pgSettingsDesc = PgSettings.builder()
-                        .name(setting.getName())
-                        .value(setting.getValue())
-                        .setting(setting.getSetting())
-                        .min(setting.getMin())
-                        .max(setting.getMax())
-                        .unit(setting.getUnit())
-                        .description(desc.getDescription())
-                        .build();
-                result.add(pgSettingsDesc);
-            }else {
-                result.add(setting);
-            }
-
-
-        }
-        return result;
+    private String findDescription(final String name, final List<PgSettingsHint> pgSettingsHints) {
+        return pgSettingsHints.stream()
+            .filter(hint -> hint.getName().equals(name))
+            .findFirst()
+            .map(PgSettingsHint::getDescription)
+            .orElse(null);
     }
 }

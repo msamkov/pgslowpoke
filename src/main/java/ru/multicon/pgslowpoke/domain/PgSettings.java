@@ -1,11 +1,13 @@
 package ru.multicon.pgslowpoke.domain;
 
 import lombok.*;
+import lombok.experimental.Wither;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @EqualsAndHashCode
+@Wither
 public class PgSettings {
     private String name;
     private String value; // текущее значение. Расчитывается как setting * unit
