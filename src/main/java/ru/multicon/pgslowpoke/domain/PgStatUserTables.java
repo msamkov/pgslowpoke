@@ -1,12 +1,11 @@
 package ru.multicon.pgslowpoke.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
 @Builder
 @AllArgsConstructor
+@EqualsAndHashCode
 public class PgStatUserTables {
     private String schema;  // Схема
     private String table;   // Таблица
