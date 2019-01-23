@@ -18,12 +18,12 @@ public class IndexSizeToIndexSizeDto implements Converter<IndexSize, IndexSizeDt
     }
 
     @Override
-    public IndexSizeDto convert(IndexSize dbSize) {
+    public IndexSizeDto convert(IndexSize indexSize) {
         return IndexSizeDto.builder()
-                .schema(dbSize.getSchema())
-                .table(dbSize.getTable())
-                .index(dbSize.getIndex())
-                .size(sizeFormatter.humanReadable(dbSize.getSize()))
+                .schema(indexSize.getSchema())
+                .table(indexSize.getTable())
+                .index(indexSize.getIndex())
+                .size(sizeFormatter.humanReadable(indexSize.getSize()))
                 .build();
     }
 }
