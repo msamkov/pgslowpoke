@@ -2,7 +2,7 @@ package ru.multicon.pgslowpoke.converters;
 
 import org.junit.Assert;
 import org.junit.Test;
-import ru.multicon.pgslowpoke.controllers.dto.DbSizeDto;
+import ru.multicon.pgslowpoke.services.dto.DbSizeDto;
 import ru.multicon.pgslowpoke.domain.DbSize;
 import ru.multicon.pgslowpoke.utils.SizeFormatter;
 

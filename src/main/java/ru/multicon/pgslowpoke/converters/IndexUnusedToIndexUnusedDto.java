@@ -4,7 +4,7 @@ package ru.multicon.pgslowpoke.converters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import ru.multicon.pgslowpoke.controllers.dto.IndexUnusedDto;
+import ru.multicon.pgslowpoke.services.dto.IndexUnusedDto;
 import ru.multicon.pgslowpoke.domain.IndexUnused;
 import ru.multicon.pgslowpoke.utils.SizeFormatter;
 

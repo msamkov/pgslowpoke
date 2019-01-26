@@ -22,33 +22,22 @@ public class DbSizeController {
     private final DbSizeService dbSizeService;
     private final IndexSizeService indexSizeService;
     private final TableSizeService tableSizeService;
-    private final DbSizeToDbSizeDto dbSizeToDbSizeDto;
-    private final IndexSizeToIndexSizeDto indexSizeToIndexSizeDto;
-    private final TableSizeToTableSizeDto tableSizeToTableSizeDto;
 
     @Autowired
-    public DbSizeController(DbSizeService dbSizeService, IndexSizeService indexSizeService, TableSizeService tableSizeService, DbSizeToDbSizeDto dbSizeToDbSizeDto, IndexSizeToIndexSizeDto indexSizeToIndexSizeDto, TableSizeToTableSizeDto tableSizeToTableSizeDto) {
+    public DbSizeController(DbSizeService dbSizeService, IndexSizeService indexSizeService,
+                            TableSizeService tableSizeService) {
         this.dbSizeService = dbSizeService;
         this.indexSizeService = indexSizeService;
         this.tableSizeService = tableSizeService;
-        this.dbSizeToDbSizeDto = dbSizeToDbSizeDto;
-        this.indexSizeToIndexSizeDto = indexSizeToIndexSizeDto;
-        this.tableSizeToTableSizeDto = tableSizeToTableSizeDto;
     }
 
     @RequestMapping({"/dbsize"})
     public String findAll(Model model) {
         log.debug("Getting db size");
 
-        model.addAttribute("dbSize", dbSizeToDbSizeDto.convert(dbSizeService.current()));
-        model.addAttribute("indexSize",
-                indexSizeService.findAll().stream()
-                                          .map(indexSizeToIndexSizeDto::convert)
-                                          .collect(Collectors.toList()));
-        model.addAttribute("tableSize",
-                tableSizeService.findAll().stream()
-                                           .map(tableSizeToTableSizeDto::convert)
-                                           .collect(Collectors.toList()));
+        model.addAttribute("dbSize", dbSizeService.current());
+        model.addAttribute("indexSize", indexSizeService.findAll());
+        model.addAttribute("tableSize", tableSizeService.findAll());
 
         return "dbSize";
     }

@@ -15,22 +15,17 @@ import java.util.stream.Collectors;
 public class IndexUnusedController {
 
     private final IndexUnusedService indexUnusedService;
-    private final IndexUnusedToIndexUnusedDto indexUnusedToIndexUnusedDto;
 
     @Autowired
-    public IndexUnusedController(IndexUnusedService indexUnusedService, IndexUnusedToIndexUnusedDto indexUnusedToIndexUnusedDto) {
+    public IndexUnusedController(IndexUnusedService indexUnusedService) {
         this.indexUnusedService = indexUnusedService;
-        this.indexUnusedToIndexUnusedDto = indexUnusedToIndexUnusedDto;
     }
 
     @RequestMapping({"/indexunused"})
     public String findAll(Model model){
         log.debug("Getting Index unused");
 
-        model.addAttribute("indexUnused",
-                indexUnusedService.findAll().stream()
-                    .map(indexUnusedToIndexUnusedDto::convert)
-                    .collect(Collectors.toList()));
+        model.addAttribute("indexUnused", indexUnusedService.findAll());
 
         return "indexUnused";
     }

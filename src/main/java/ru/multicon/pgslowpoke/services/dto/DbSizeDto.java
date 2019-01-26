@@ -1,4 +1,4 @@
-package ru.multicon.pgslowpoke.controllers.dto;
+package ru.multicon.pgslowpoke.services.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
