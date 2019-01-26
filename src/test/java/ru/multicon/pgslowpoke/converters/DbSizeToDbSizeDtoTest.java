@@ -15,13 +15,16 @@ public class DbSizeToDbSizeDtoTest {
         SizeFormatter sizeFormatter = new SizeFormatter();
         DbSizeToDbSizeDto dbSizeToDbSizeDto = new DbSizeToDbSizeDto(sizeFormatter);
         String dbName = "dbtest";
+        long size = 32;
+        String sizeHumanReadable = "32 bytes";
+
         DbSize dbSize = DbSize.builder()
                 .name(dbName)
-                .size(30)
+                .size(size)
                 .build();
         DbSizeDto expected = DbSizeDto.builder()
                 .name(dbName)
-                .size("30 bytes")
+                .size(sizeHumanReadable)
                 .build();
 
         //выполняем
