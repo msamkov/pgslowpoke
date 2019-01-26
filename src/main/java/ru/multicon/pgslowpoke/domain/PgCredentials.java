@@ -1,6 +1,6 @@
 package ru.multicon.pgslowpoke.domain;
 
-public class CredentialsDTO {
+public class PgCredentials {
     private String host;
     private String database;
     private String port;

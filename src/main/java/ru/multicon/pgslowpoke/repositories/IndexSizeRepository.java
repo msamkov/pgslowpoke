@@ -8,7 +8,6 @@ import ru.multicon.pgslowpoke.domain.IndexSize;
 
 import java.util.List;
 
-@Mapper
 public interface IndexSizeRepository {
 
     @Select("SELECT schemaname AS schema,\n" +

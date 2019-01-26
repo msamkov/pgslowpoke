@@ -5,7 +5,7 @@ import ru.multicon.pgslowpoke.domain.PgSettings;
 
 import java.util.List;
 
-@Mapper
+
 public interface PgSettingsRepository {
 
     @Select("SELECT name, \n" +

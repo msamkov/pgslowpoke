@@ -5,7 +5,7 @@ import ru.multicon.pgslowpoke.domain.IndexDuplicate;
 
 import java.util.List;
 
-@Mapper
+
 public interface IndexDuplicateRepository {
 
     @Select("WITH duplicate_index AS\n" +

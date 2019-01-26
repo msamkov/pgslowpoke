@@ -3,7 +3,7 @@ package ru.multicon.pgslowpoke.repositories;
 import org.apache.ibatis.annotations.*;
 import ru.multicon.pgslowpoke.domain.DbSize;
 
-@Mapper
+
 public interface DbSizeRepository {
 
     @Select("SELECT #{name} AS name,  \n" +

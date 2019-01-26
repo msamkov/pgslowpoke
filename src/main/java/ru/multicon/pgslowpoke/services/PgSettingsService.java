@@ -2,35 +2,38 @@ package ru.multicon.pgslowpoke.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.multicon.pgslowpoke.domain.PgCredentials;
 import ru.multicon.pgslowpoke.domain.PgSettings;
 import ru.multicon.pgslowpoke.domain.PgSettingsHint;
 import ru.multicon.pgslowpoke.repositories.PgSettingsRepository;
+import ru.multicon.pgslowpoke.utils.MyBatisMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class PgSettingsService {
-
+    private final MyBatisMapper myBatisMapper;
     private final PgSettingsHintService servicePgSettingsHint;
 
-    private final PgSettingsRepository pgSettingsRepository;
-
     @Autowired
-    public PgSettingsService(final PgSettingsRepository pgSettingsRepository,
-                             final PgSettingsHintService servicePgSettingsHint) {
-        this.pgSettingsRepository = pgSettingsRepository;
+    public PgSettingsService(MyBatisMapper myBatisMapper, PgSettingsHintService servicePgSettingsHint) {
+        this.myBatisMapper = myBatisMapper;
         this.servicePgSettingsHint = servicePgSettingsHint;
     }
 
-    public List<PgSettings> findAll() {
+    public List<PgSettings> findAll(PgCredentials pgCredentials) {
+        PgSettingsRepository pgSettingsRepository =
+                myBatisMapper.getMapper(pgCredentials, PgSettingsRepository.class);
         return joinDescription(
             pgSettingsRepository.findAll(),
             servicePgSettingsHint.findAll()
         );
     }
 
-    public List<PgSettings> findPrimarySettings() {
+    public List<PgSettings> findPrimarySettings(PgCredentials pgCredentials) {
+        PgSettingsRepository pgSettingsRepository =
+                myBatisMapper.getMapper(pgCredentials, PgSettingsRepository.class);
         return joinDescription(
             pgSettingsRepository.findPrimarySettings(),
             servicePgSettingsHint.findAll()

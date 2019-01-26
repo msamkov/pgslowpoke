@@ -8,7 +8,7 @@ import ru.multicon.pgslowpoke.domain.TableSize;
 
 import java.util.List;
 
-@Mapper
+
 public interface TableSizeRepository {
 
     @Select("SELECT schemaname AS schema, \n" +

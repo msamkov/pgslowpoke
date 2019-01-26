@@ -8,7 +8,7 @@ import ru.multicon.pgslowpoke.domain.IndexUnused;
 
 import java.util.List;
 
-@Mapper
+
 public interface IndexUnusedRepository {
 
     @Select("WITH tbl_pk_index AS\n" +

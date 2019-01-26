@@ -3,15 +3,19 @@ logging:
     org.springframework.web: DEBUG
     ru.multicon: DEBUG
 
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:35432/analytics
+#    username: analytics
+#    password: passwordanalytics
+#  liquibase:
+#    change-log: classpath:/db/db.changelog-master.xml
+#    enabled: true
+#    contexts: prod, test
+
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:35432/analytics
-    username: analytics
-    password: passwordanalytics
   liquibase:
-    change-log: classpath:/db/db.changelog-master.xml
-    enabled: true
-    contexts: prod, test
+    enabled: false
 
 server:
   tomcat:

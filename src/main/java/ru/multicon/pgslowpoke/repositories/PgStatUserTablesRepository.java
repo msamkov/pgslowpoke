@@ -9,7 +9,7 @@ import ru.multicon.pgslowpoke.domain.PgStatUserTables;
 
 import java.util.List;
 
-@Mapper
+
 public interface PgStatUserTablesRepository {
 
     @Select("SELECT schemaname, \n" +
