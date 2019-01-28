@@ -41,5 +41,3 @@ http://localhost:8080/dbsize
 4. Сделайте push (`git push origin pgslowpoke-new-feature`)
 5. Создайте новый Pull Request
 
-
-## <a href="https://trello.com/b/f9A6f24T/pgslowpoke">Доска с задачами тут 👆</a>
