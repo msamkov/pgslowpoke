@@ -5,22 +5,22 @@ import org.springframework.stereotype.Service;
 import ru.multicon.pgslowpoke.domain.PgCredentials;
 import ru.multicon.pgslowpoke.domain.PgStatUserTables;
 import ru.multicon.pgslowpoke.repositories.PgStatUserTablesRepository;
-import ru.multicon.pgslowpoke.utils.MyBatisMapper;
+import ru.multicon.pgslowpoke.utils.MyBatisMapperFactory;
 
 import java.util.List;
 
 @Service
 public class PgStatUserTablesService {
-    private final MyBatisMapper myBatisMapper;
+    private final MyBatisMapperFactory myBatisMapperFactory;
 
     @Autowired
-    public PgStatUserTablesService(MyBatisMapper myBatisMapper) {
-        this.myBatisMapper = myBatisMapper;
+    public PgStatUserTablesService(MyBatisMapperFactory myBatisMapperFactory) {
+        this.myBatisMapperFactory = myBatisMapperFactory;
     }
 
     public List<PgStatUserTables> findAll(PgCredentials pgCredentials) {
         PgStatUserTablesRepository pgStatUserTablesRepository =
-                myBatisMapper.getMapper(pgCredentials, PgStatUserTablesRepository.class);
+                myBatisMapperFactory.create(pgCredentials, PgStatUserTablesRepository.class);
         return pgStatUserTablesRepository.findAll();
     }
 }

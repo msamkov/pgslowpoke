@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 import ru.multicon.pgslowpoke.domain.PgCredentials;
 
 @Component
-public class MyBatisMapper {
+public class MyBatisMapperFactory {
 
-    public <T> T getMapper(PgCredentials pgCredentials, Class type) {
+    public <T> T create(PgCredentials pgCredentials, Class type) {
         HikariDataSource dataSource = getDataSource(pgCredentials);
         TransactionFactory transactionFactory =
                 new JdbcTransactionFactory();

@@ -5,21 +5,21 @@ import org.springframework.stereotype.Service;
 import ru.multicon.pgslowpoke.domain.ForeignKeyDuplicate;
 import ru.multicon.pgslowpoke.domain.PgCredentials;
 import ru.multicon.pgslowpoke.repositories.ForeignKeyDuplicateRepository;
-import ru.multicon.pgslowpoke.utils.MyBatisMapper;
+import ru.multicon.pgslowpoke.utils.MyBatisMapperFactory;
 
 import java.util.List;
 
 @Service
 public class ForeignKeyDuplicateService {
-    private final MyBatisMapper myBatisMapper;
+    private final MyBatisMapperFactory myBatisMapperFactory;
 
     @Autowired
-    public ForeignKeyDuplicateService(MyBatisMapper myBatisMapper) {
-        this.myBatisMapper = myBatisMapper;
+    public ForeignKeyDuplicateService(MyBatisMapperFactory myBatisMapperFactory) {
+        this.myBatisMapperFactory = myBatisMapperFactory;
     }
 
     public List<ForeignKeyDuplicate> findAll(PgCredentials pgCredentials) {
-        ForeignKeyDuplicateRepository foreignKeyDuplicateRepository = myBatisMapper.getMapper(pgCredentials,
+        ForeignKeyDuplicateRepository foreignKeyDuplicateRepository = myBatisMapperFactory.create(pgCredentials,
                 ForeignKeyDuplicateRepository.class);
         return foreignKeyDuplicateRepository.findAll();
     }

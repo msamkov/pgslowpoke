@@ -5,22 +5,22 @@ import org.springframework.stereotype.Service;
 import ru.multicon.pgslowpoke.domain.IndexDuplicate;
 import ru.multicon.pgslowpoke.domain.PgCredentials;
 import ru.multicon.pgslowpoke.repositories.IndexDuplicateRepository;
-import ru.multicon.pgslowpoke.utils.MyBatisMapper;
+import ru.multicon.pgslowpoke.utils.MyBatisMapperFactory;
 
 import java.util.List;
 
 @Service
 public class IndexDuplicateService {
-    private final MyBatisMapper myBatisMapper;
+    private final MyBatisMapperFactory myBatisMapperFactory;
 
     @Autowired
-    public IndexDuplicateService(MyBatisMapper myBatisMapper) {
-        this.myBatisMapper = myBatisMapper;
+    public IndexDuplicateService(MyBatisMapperFactory myBatisMapperFactory) {
+        this.myBatisMapperFactory = myBatisMapperFactory;
     }
 
     public List<IndexDuplicate> findAll(PgCredentials pgCredentials) {
         IndexDuplicateRepository indexDuplicateRepository =
-                myBatisMapper.getMapper(pgCredentials, IndexDuplicateRepository.class);
+                myBatisMapperFactory.create(pgCredentials, IndexDuplicateRepository.class);
         return indexDuplicateRepository.findAll();
     }
 }

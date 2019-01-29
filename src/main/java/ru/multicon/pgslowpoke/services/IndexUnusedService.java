@@ -6,25 +6,25 @@ import ru.multicon.pgslowpoke.converters.IndexUnusedToIndexUnusedDto;
 import ru.multicon.pgslowpoke.domain.PgCredentials;
 import ru.multicon.pgslowpoke.repositories.IndexUnusedRepository;
 import ru.multicon.pgslowpoke.services.dto.IndexUnusedDto;
-import ru.multicon.pgslowpoke.utils.MyBatisMapper;
+import ru.multicon.pgslowpoke.utils.MyBatisMapperFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class IndexUnusedService {
-    private final MyBatisMapper myBatisMapper;
+    private final MyBatisMapperFactory myBatisMapperFactory;
     private final IndexUnusedToIndexUnusedDto indexUnusedToIndexUnusedDto;
 
     @Autowired
-    public IndexUnusedService(MyBatisMapper myBatisMapper, IndexUnusedToIndexUnusedDto indexUnusedToIndexUnusedDto) {
-        this.myBatisMapper = myBatisMapper;
+    public IndexUnusedService(MyBatisMapperFactory myBatisMapperFactory, IndexUnusedToIndexUnusedDto indexUnusedToIndexUnusedDto) {
+        this.myBatisMapperFactory = myBatisMapperFactory;
         this.indexUnusedToIndexUnusedDto = indexUnusedToIndexUnusedDto;
     }
 
     public List<IndexUnusedDto> findAll(PgCredentials pgCredentials) {
         IndexUnusedRepository indexUnusedRepository =
-                myBatisMapper.getMapper(pgCredentials, IndexUnusedRepository.class);
+                myBatisMapperFactory.create(pgCredentials, IndexUnusedRepository.class);
         return indexUnusedRepository
                 .findAll()
                 .stream()
