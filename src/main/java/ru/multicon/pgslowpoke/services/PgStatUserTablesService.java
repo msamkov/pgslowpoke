@@ -24,11 +24,10 @@ public class PgStatUserTablesService {
     }
 
     public List<PgStatUserTables> findAll(PgCredentials pgCredentials) {
-        HikariDataSource dataSource = getHikariDataSource(pgCredentials);
-        PgStatUserTablesRepository pgStatUserTablesRepository = getPgStatUserTablesRepository(dataSource);
-        List<PgStatUserTables> pgStatUserTables = pgStatUserTablesRepository.findAll();
-        dataSource.close();
-        return pgStatUserTables;
+        try(HikariDataSource dataSource = getHikariDataSource(pgCredentials)) {
+            PgStatUserTablesRepository pgStatUserTablesRepository = getPgStatUserTablesRepository(dataSource);
+            return pgStatUserTablesRepository.findAll();
+        }
     }
 
     protected HikariDataSource getHikariDataSource(PgCredentials pgCredentials) {

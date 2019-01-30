@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.multicon.pgslowpoke.converters.IndexUnusedToIndexUnusedDto;
 import ru.multicon.pgslowpoke.domain.PgCredentials;
-import ru.multicon.pgslowpoke.repositories.ForeignKeyDuplicateRepository;
 import ru.multicon.pgslowpoke.repositories.IndexUnusedRepository;
 import ru.multicon.pgslowpoke.services.dto.IndexUnusedDto;
 import ru.multicon.pgslowpoke.utils.DataSourceFactory;
@@ -28,15 +27,14 @@ public class IndexUnusedService {
     }
 
     public List<IndexUnusedDto> findAll(PgCredentials pgCredentials) {
-        HikariDataSource dataSource = getHikariDataSource(pgCredentials);
-        IndexUnusedRepository indexUnusedRepository = getIndexUnusedRepository(dataSource);
-        List<IndexUnusedDto> indexUnusedDtos = indexUnusedRepository
-                .findAll()
-                .stream()
-                .map(indexUnusedToIndexUnusedDto::convert)
-                .collect(Collectors.toList());
-        dataSource.close();
-        return indexUnusedDtos;
+        try(HikariDataSource dataSource = getHikariDataSource(pgCredentials)) {
+            IndexUnusedRepository indexUnusedRepository = getIndexUnusedRepository(dataSource);
+            return indexUnusedRepository
+                    .findAll()
+                    .stream()
+                    .map(indexUnusedToIndexUnusedDto::convert)
+                    .collect(Collectors.toList());
+        }
 
     }
 

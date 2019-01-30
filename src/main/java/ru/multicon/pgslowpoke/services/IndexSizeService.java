@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.multicon.pgslowpoke.converters.IndexSizeToIndexSizeDto;
 import ru.multicon.pgslowpoke.domain.PgCredentials;
-import ru.multicon.pgslowpoke.repositories.ForeignKeyDuplicateRepository;
 import ru.multicon.pgslowpoke.repositories.IndexSizeRepository;
 import ru.multicon.pgslowpoke.services.dto.IndexSizeDto;
 import ru.multicon.pgslowpoke.utils.DataSourceFactory;
@@ -28,15 +27,14 @@ public class IndexSizeService {
     }
 
     public List<IndexSizeDto> findAll(PgCredentials pgCredentials) {
-        HikariDataSource dataSource = getHikariDataSource(pgCredentials);
-        IndexSizeRepository indexSizeRepository = getIndexSizeRepository(dataSource);
-        List<IndexSizeDto> indexSizeDtos = indexSizeRepository
-                .findAll()
-                .stream()
-                .map(indexSizeToIndexSizeDto::convert)
-                .collect(Collectors.toList());
-        dataSource.close();
-        return indexSizeDtos;
+        try(HikariDataSource dataSource = getHikariDataSource(pgCredentials)) {
+            IndexSizeRepository indexSizeRepository = getIndexSizeRepository(dataSource);
+            return indexSizeRepository
+                    .findAll()
+                    .stream()
+                    .map(indexSizeToIndexSizeDto::convert)
+                    .collect(Collectors.toList());
+        }
     }
 
     protected HikariDataSource getHikariDataSource(PgCredentials pgCredentials) {

@@ -28,15 +28,14 @@ public class TableSizeService {
     }
 
     public List<TableSizeDto> findAll(PgCredentials pgCredentials) {
-        HikariDataSource dataSource = getHikariDataSource(pgCredentials);
-        TableSizeRepository tableSizeRepository = getTableSizeRepository(dataSource);
-        List<TableSizeDto> tableSizeDtos = tableSizeRepository
-                .findAll()
-                .stream()
-                .map(tableSizeToTableSizeDto::convert)
-                .collect(Collectors.toList());
-        dataSource.close();
-        return tableSizeDtos;
+        try(HikariDataSource dataSource = getHikariDataSource(pgCredentials)) {
+            TableSizeRepository tableSizeRepository = getTableSizeRepository(dataSource);
+            return tableSizeRepository
+                    .findAll()
+                    .stream()
+                    .map(tableSizeToTableSizeDto::convert)
+                    .collect(Collectors.toList());
+        }
     }
 
     protected HikariDataSource getHikariDataSource(PgCredentials pgCredentials) {

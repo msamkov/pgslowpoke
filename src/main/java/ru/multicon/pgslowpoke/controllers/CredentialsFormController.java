@@ -20,8 +20,6 @@ public class CredentialsFormController {
 
     @PostMapping("/inputcredentials")
     public String inputCredentials(@ModelAttribute("pgCredentials") PgCredentials pgCredentials) {
-        //TODO сохранять введенный datasource
-
         return "forward:dbsize";
     }
 }

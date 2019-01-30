@@ -22,20 +22,18 @@ public class DbSizeService {
     }
 
     public DbSizeDto findByName(PgCredentials pgCredentials, String name) {
-        HikariDataSource dataSource = getHikariDataSource(pgCredentials);
-        DbSizeRepository dbSizeRepository = getDbSizeRepository(dataSource);
-        DbSizeDto dbSizeDto = dbSizeToDbSizeDto.convert(dbSizeRepository.findByName(name));
-        dataSource.close();
-        return dbSizeDto;
+        try(HikariDataSource dataSource = getHikariDataSource(pgCredentials)) {
+            DbSizeRepository dbSizeRepository = getDbSizeRepository(dataSource);
+            return dbSizeToDbSizeDto.convert(dbSizeRepository.findByName(name));
+        }
     }
 
     public DbSizeDto current(PgCredentials pgCredentials)
     {
-        HikariDataSource hikariDataSource = getHikariDataSource(pgCredentials);
-        DbSizeRepository dbSizeRepository = getDbSizeRepository(hikariDataSource);
-        DbSizeDto dbSizeDto = dbSizeToDbSizeDto.convert(dbSizeRepository.current());
-        hikariDataSource.close();
-        return dbSizeDto;
+        try(HikariDataSource dataSource = getHikariDataSource(pgCredentials)) {
+            DbSizeRepository dbSizeRepository = getDbSizeRepository(dataSource);
+            return dbSizeToDbSizeDto.convert(dbSizeRepository.current());
+        }
     }
 
     protected HikariDataSource getHikariDataSource(PgCredentials pgCredentials) {

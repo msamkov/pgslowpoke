@@ -28,25 +28,23 @@ public class PgSettingsService {
     }
 
     public List<PgSettings> findAll(PgCredentials pgCredentials) {
-        HikariDataSource dataSource = getHikariDataSource(pgCredentials);
-        PgSettingsRepository pgSettingsRepository = getPgSettingsRepository(dataSource);
-        List<PgSettings> pgSettings = joinDescription(
-            pgSettingsRepository.findAll(),
-            servicePgSettingsHint.findAll()
-        );
-        dataSource.close();
-        return pgSettings;
+        try(HikariDataSource dataSource = getHikariDataSource(pgCredentials)) {
+            PgSettingsRepository pgSettingsRepository = getPgSettingsRepository(dataSource);
+            return joinDescription(
+                    pgSettingsRepository.findAll(),
+                    servicePgSettingsHint.findAll()
+            );
+        }
     }
 
     public List<PgSettings> findPrimarySettings(PgCredentials pgCredentials) {
-        HikariDataSource dataSource = getHikariDataSource(pgCredentials);
-        PgSettingsRepository pgSettingsRepository = getPgSettingsRepository(dataSource);
-        List<PgSettings> pgSettings = joinDescription(
-            pgSettingsRepository.findPrimarySettings(),
-            servicePgSettingsHint.findAll()
-        );
-        dataSource.close();
-        return pgSettings;
+        try(HikariDataSource dataSource = getHikariDataSource(pgCredentials)) {
+            PgSettingsRepository pgSettingsRepository = getPgSettingsRepository(dataSource);
+            return joinDescription(
+                    pgSettingsRepository.findPrimarySettings(),
+                    servicePgSettingsHint.findAll()
+            );
+        }
     }
 
     private List<PgSettings> joinDescription(final List<PgSettings> pgSettings,

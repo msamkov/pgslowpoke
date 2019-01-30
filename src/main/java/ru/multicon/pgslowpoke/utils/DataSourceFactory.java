@@ -17,6 +17,7 @@ public class DataSourceFactory {
         );
         hikariConfig.setUsername(pgCredentials.getUser());
         hikariConfig.setPassword(pgCredentials.getPassword());
+        hikariConfig.setMaximumPoolSize(1);
         return new HikariDataSource(hikariConfig);
     }
 }

@@ -23,11 +23,10 @@ public class IndexDuplicateService {
     }
 
     public List<IndexDuplicate> findAll(PgCredentials pgCredentials) {
-        HikariDataSource dataSource = getHikariDataSource(pgCredentials);
-        IndexDuplicateRepository indexDuplicateRepository = getIndexDuplicateRepository(dataSource);
-        List<IndexDuplicate> indexDuplicates = indexDuplicateRepository.findAll();
-        dataSource.close();
-        return indexDuplicates;
+        try(HikariDataSource dataSource = getHikariDataSource(pgCredentials)) {
+            IndexDuplicateRepository indexDuplicateRepository = getIndexDuplicateRepository(dataSource);
+            return indexDuplicateRepository.findAll();
+        }
     }
 
     protected HikariDataSource getHikariDataSource(PgCredentials pgCredentials) {

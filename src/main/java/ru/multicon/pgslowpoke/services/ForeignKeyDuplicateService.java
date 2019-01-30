@@ -23,11 +23,10 @@ public class ForeignKeyDuplicateService {
     }
 
     public List<ForeignKeyDuplicate> findAll(PgCredentials pgCredentials) {
-        HikariDataSource dataSource = getHikariDataSource(pgCredentials);
-        ForeignKeyDuplicateRepository foreignKeyDuplicateRepository = getForeignKeyDuplicateRepository(dataSource);
-        List<ForeignKeyDuplicate> foreignKeyDuplicates = foreignKeyDuplicateRepository.findAll();
-        dataSource.close();
-        return foreignKeyDuplicates;
+        try(HikariDataSource dataSource = getHikariDataSource(pgCredentials)) {
+            ForeignKeyDuplicateRepository foreignKeyDuplicateRepository = getForeignKeyDuplicateRepository(dataSource);
+            return foreignKeyDuplicateRepository.findAll();
+        }
     }
 
     protected HikariDataSource getHikariDataSource(PgCredentials pgCredentials) {
