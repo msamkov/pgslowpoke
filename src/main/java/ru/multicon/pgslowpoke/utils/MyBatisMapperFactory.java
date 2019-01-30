@@ -15,8 +15,7 @@ import ru.multicon.pgslowpoke.domain.PgCredentials;
 @Component
 public class MyBatisMapperFactory {
 
-    public <T> T create(PgCredentials pgCredentials, Class type) {
-        HikariDataSource dataSource = getDataSource(pgCredentials);
+    public <T> T create(HikariDataSource dataSource , Class type) {
         TransactionFactory transactionFactory =
                 new JdbcTransactionFactory();
         Environment environment =
@@ -29,18 +28,7 @@ public class MyBatisMapperFactory {
 
     }
 
-    private HikariDataSource getDataSource(PgCredentials pgCredentials) {
-        HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl(
-                String.format("jdbc:postgresql://%s:%s/%s",
-                        pgCredentials.getHost(),
-                        pgCredentials.getPort(),
-                        pgCredentials.getDatabase())
-        );
-        hikariConfig.setUsername(pgCredentials.getUser());
-        hikariConfig.setPassword(pgCredentials.getPassword());
-        return new HikariDataSource(hikariConfig);
-    }
+
 
 
 

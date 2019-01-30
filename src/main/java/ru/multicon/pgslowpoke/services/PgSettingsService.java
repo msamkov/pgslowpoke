@@ -1,11 +1,14 @@
 package ru.multicon.pgslowpoke.services;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.multicon.pgslowpoke.domain.PgCredentials;
 import ru.multicon.pgslowpoke.domain.PgSettings;
 import ru.multicon.pgslowpoke.domain.PgSettingsHint;
+import ru.multicon.pgslowpoke.repositories.ForeignKeyDuplicateRepository;
 import ru.multicon.pgslowpoke.repositories.PgSettingsRepository;
+import ru.multicon.pgslowpoke.utils.DataSourceFactory;
 import ru.multicon.pgslowpoke.utils.MyBatisMapperFactory;
 
 import java.util.List;
@@ -15,29 +18,35 @@ import java.util.stream.Collectors;
 public class PgSettingsService {
     private final MyBatisMapperFactory myBatisMapperFactory;
     private final PgSettingsHintService servicePgSettingsHint;
+    private final DataSourceFactory dataSourceFactory;
 
     @Autowired
-    public PgSettingsService(MyBatisMapperFactory myBatisMapperFactory, PgSettingsHintService servicePgSettingsHint) {
+    public PgSettingsService(MyBatisMapperFactory myBatisMapperFactory, PgSettingsHintService servicePgSettingsHint, DataSourceFactory dataSourceFactory) {
         this.myBatisMapperFactory = myBatisMapperFactory;
         this.servicePgSettingsHint = servicePgSettingsHint;
+        this.dataSourceFactory = dataSourceFactory;
     }
 
     public List<PgSettings> findAll(PgCredentials pgCredentials) {
-        PgSettingsRepository pgSettingsRepository =
-                myBatisMapperFactory.create(pgCredentials, PgSettingsRepository.class);
-        return joinDescription(
+        HikariDataSource dataSource = getHikariDataSource(pgCredentials);
+        PgSettingsRepository pgSettingsRepository = getPgSettingsRepository(dataSource);
+        List<PgSettings> pgSettings = joinDescription(
             pgSettingsRepository.findAll(),
             servicePgSettingsHint.findAll()
         );
+        dataSource.close();
+        return pgSettings;
     }
 
     public List<PgSettings> findPrimarySettings(PgCredentials pgCredentials) {
-        PgSettingsRepository pgSettingsRepository =
-                myBatisMapperFactory.create(pgCredentials, PgSettingsRepository.class);
-        return joinDescription(
+        HikariDataSource dataSource = getHikariDataSource(pgCredentials);
+        PgSettingsRepository pgSettingsRepository = getPgSettingsRepository(dataSource);
+        List<PgSettings> pgSettings = joinDescription(
             pgSettingsRepository.findPrimarySettings(),
             servicePgSettingsHint.findAll()
         );
+        dataSource.close();
+        return pgSettings;
     }
 
     private List<PgSettings> joinDescription(final List<PgSettings> pgSettings,
@@ -54,4 +63,13 @@ public class PgSettingsService {
             .map(PgSettingsHint::getDescription)
             .orElse(null);
     }
+
+    protected HikariDataSource getHikariDataSource(PgCredentials pgCredentials) {
+        return dataSourceFactory.create(pgCredentials);
+    }
+
+    protected PgSettingsRepository getPgSettingsRepository(HikariDataSource dataSource) {
+        return myBatisMapperFactory.create(dataSource, PgSettingsRepository.class);
+    }
+
 }
