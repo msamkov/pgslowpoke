@@ -16,22 +16,22 @@ docker-compose up -d
 
 
 ###  Поиск повторяющихся индексов
-http://localhost:8080/indexduplicate
+http://localhost:8081/indexduplicate
 
 ###  Поиск повторяющихся внешних ключей
-http://localhost:8080/foreignkeyduplicate
+http://localhost:8081/foreignkeyduplicate
 
 ### Основные параметры кластера
-http://localhost:8080/pgsettings
+http://localhost:8081/pgsettings
 
 ### Неиспользуемые индексы
-http://localhost:8080/indexunused
+http://localhost:8081/indexunused
 
 ### Статистика просмотров только пользовательских таблиц
-http://localhost:8080/pgstatusertables
+http://localhost:8081/pgstatusertables
 
 ### Размер БД, таблиц и индексов
-http://localhost:8080/dbsize
+http://localhost:8081/dbsize
 
 ## Contributing
 

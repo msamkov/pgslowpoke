@@ -14,7 +14,7 @@ public class CredentialsFormController {
     @ModelAttribute("pgCredentials")
     protected PgCredentials getPgCredentials() {
         return new PgCredentials()
-                    .setHost("db-analytics")
+                    .setHost("db-for-test")
                     .setPort("5432")
                     .setDatabase("analytics")
                     .setUser("analytics")

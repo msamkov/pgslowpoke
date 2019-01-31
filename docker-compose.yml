@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  db-analytics:
+  db-for-test:
     image: postgres:11.1
     environment:
     - POSTGRES_USER=analytics
@@ -10,13 +10,13 @@ services:
     expose:
     - 5432
     volumes:
-    - db-analytics-data:/var/lib/postgresql/data/
+    - db-for-test-data:/var/lib/postgresql/data/
     networks:
     - backend
 
   pgslowpoke:
     depends_on:
-    - db-analytics
+    - db-for-test
     build:
       context: ./
       dockerfile: Dockerfile
@@ -32,7 +32,7 @@ services:
     environment:
     - SPRING_PROFILES_ACTIVE=prod
     - SERVER_PORT=8080
-    - SPRING_DATASOURCE_JDBC_URL=jdbc:postgresql://db-analytics:5432/analytics
+    - SPRING_DATASOURCE_JDBC_URL=jdbc:postgresql://db-for-test:5432/analytics
     - SPRING_DATASOURCE_USERNAME=analytics
     - SPRING_DATASOURCE_PASSWORD=passwordanalytics
     - JAVA_OPTS=-Xmx500m -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
@@ -44,4 +44,4 @@ networks:
     driver: bridge
 
 volumes:
-  db-analytics-data:
+  db-for-test-data:
