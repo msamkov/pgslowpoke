@@ -41,3 +41,6 @@ http://localhost:8081/dbsize
 4. Сделайте push (`git push origin pgslowpoke-new-feature`)
 5. Создайте новый Pull Request
 
+## Демо
+
+![](demo.gif)
