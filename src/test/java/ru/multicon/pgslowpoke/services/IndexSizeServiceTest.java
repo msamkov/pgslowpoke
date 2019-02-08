@@ -27,13 +27,10 @@ public class IndexSizeServiceTest {
         PgCredentials pgCredentials = mock(PgCredentials.class);
         HikariDataSource dataSource = mock(HikariDataSource.class);
         DataSourceFactory dataSourceFactory = mock(DataSourceFactory.class);
-        IndexSizeRepository indexSizeRepository =
-                mock(IndexSizeRepository.class);
-
+        IndexSizeRepository indexSizeRepository = mock(IndexSizeRepository.class);
         SizeFormatter sizeFormatter = new SizeFormatter();
         IndexSizeToIndexSizeDto indexSizeToIndexSizeDto = new IndexSizeToIndexSizeDto(sizeFormatter);
-        IndexSizeService indexSizeService =
-                new IndexSizeService(myBatisMapperFactory,
+        IndexSizeService indexSizeService = new IndexSizeService(myBatisMapperFactory,
                         indexSizeToIndexSizeDto, dataSourceFactory);
 
         List<IndexSize> indexSizes = Arrays.asList(
