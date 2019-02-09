@@ -7,17 +7,17 @@ import java.util.List;
 
 public class PgSettingsHintServiceTest {
 
-//    @Test
-//    public void findAll() {
-//        //подготавливаем
-//        PgSettingsHintService pgSettingsHintService = new PgSettingsHintService();
-//        int min = 1;
-//
-//        //выполняем
-//        List<PgSettingsHint> pgSettingsHints = pgSettingsHintService.findAll();
-//        int actual = pgSettingsHints.size();
-//
-//        //сравниваем
-//        Assert.assertTrue(actual > min);
-//    }
+    @Test
+    public void findAll() {
+        //подготавливаем
+        PgSettingsHintService pgSettingsHintService = new PgSettingsHintService();
+        int min = 1;
+
+        //выполняем
+        List<PgSettingsHint> pgSettingsHints = pgSettingsHintService.findAll();
+        int actual = pgSettingsHints.size();
+
+        //сравниваем
+        Assert.assertTrue(actual > min);
+    }
 }
