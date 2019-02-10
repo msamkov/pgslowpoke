@@ -41,6 +41,24 @@ http://localhost:8081/dbsize
 4. Сделайте push (`git push origin pgslowpoke-new-feature`)
 5. Создайте новый Pull Request
 
+### Ключевые навыки для contributing
+
+1.  Java 8
+2.  Spring Boot
+3.  Thymeleaf 
+4.  MyBatis
+5.  Docker
+6.  Docker-compose
+7.  TestContainers
+8.  SQL
+9.  Bash
+10. Liquibase
+11. JUnit
+12. PostgreSQL
+13. Lombok
+14. Bootstrap
+15. Spring MVC
+
 ## Демо
 
 ![](demo.gif)
