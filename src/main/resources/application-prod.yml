@@ -6,13 +6,20 @@ logging:
     ru.multicon: DEBUG
 
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
   datasource:
-    url: jdbc:postgresql://db-for-test:5432/analytics
-    username: analytics
-    password: passwordanalytics
+    url: jdbc:postgresql://ec2-50-17-250-38.compute-1.amazonaws.com:5432/d5cspb8gct3jmk
+    username: udkainskasufko
+    password: ${HEROKU_DB_PASSWORD}
   liquibase:
     change-log: classpath:/db/db.changelog-master.xml
-    enabled: true
+    enabled: false
     contexts: prod, test
 
 server:
